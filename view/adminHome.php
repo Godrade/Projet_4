@@ -1,11 +1,4 @@
 <?php
-//A DEGAGER
-session_start();
-if(!isset($_SESSION["username"])){
-    header("Location: index.php?action=login");
-    exit();   
-}
-
 require('includes/headerView.php');
 ?>
 

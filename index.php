@@ -22,11 +22,11 @@ if(!empty($_GET['action'])){
             connexionLogin($_POST);
         break;
         case 'admin':
+            checkSessionUser();
             AdminPage();
         break;
         case 'logout':
-            $deleteSession = new sessionDelete();
-            $deleteSession->deleteSession();
+            desrtoySessionUser();
         break;
        default: 
            DefaultPage();

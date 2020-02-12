@@ -30,6 +30,3 @@ function AdminPage(){
     $title = 'Administration';
     require('view/adminHome.php');
 }
-
-function Logout(){
-}

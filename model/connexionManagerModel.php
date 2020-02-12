@@ -1,47 +1,29 @@
 <?php
 
-class connexionManagerModel extends dbManager{
+class connexionManagerModel{
 
     private $_db;
-    private $_passwordV;
-    private $_usernameV;
     private $_objectUser;
+    private $_objectAccount;
 
     public function __construct($connexionClass){
       $this->_db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');
-      // $this->_db = new dbManager();
-      var_dump($this->_db);
-      $this->setInfo($connexionClass);
-      $this->checkerAll($connexionClass);
-      // $connexionClass->afficheFormulaire();
+      $this->_objectUser = $connexionClass;
+      $this->setAccount();
+
+      $this->_objectUser->setObjectAccount($this->getAccount());
+      $this->_objectUser->verifyConnection();
 
     }
 
-    public function setInfo($connexionClass){
-      $q = $this->_db->query("SELECT * FROM user WHERE username = '$connexionClass->getUsername()'");
-      var_dump($q);
-      while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-      {
-        $this->_passwordV = $donnees['password'];
-        $this->_usernameV = $donnees['username'];
-      }
-      // return $montableau;
+    public function setAccount(){
+      $requete = $this->_db->prepare("SELECT username, password FROM user WHERE username = :user");
+      $requete->bindValue("user", $this->_objectUser->getUsername());
+      $requete->execute();
+      $account = $requete->fetch(PDO::FETCH_ASSOC);
+      $this->_objectAccount = $account;
     }
 
-    public function checkerAll($connexionClass){
-      if($this->_usernameV == $connexionClass->getUsername()){
-        //Si username valid
-        if(password_verify($connexionClass->getPassword(), $this->_passwordV)){
-          //Password valid
-          // header('Location: ?action=admin');
-        }else{
-          //Password invalid
-          // header('Location: ?action=login');
-        }
-      }else{
-        //Username invalid
-        // header('Location: ?action=login');
-      }
-    }
+    public function getAccount(){return $this->_objectAccount;}
 
 }

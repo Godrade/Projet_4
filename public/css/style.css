@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+pre {
+    color: orange;
+}
+
 /* Boutton */
 
 .btn-1 {

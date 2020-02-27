@@ -1,4 +1,5 @@
 <?php
+
 require('model/dbManager.php');
 require('controller/frontController.php');
 require('controller/connexionController.php');
@@ -22,7 +23,7 @@ if(!empty($_GET['action'])){
             connexionLogin($_POST);
         break;
         case 'admin':
-            checkSessionUser();
+            session_start();
             AdminPage();
         break;
         case 'logout':

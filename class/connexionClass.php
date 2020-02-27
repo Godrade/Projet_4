@@ -2,22 +2,44 @@
 
 class connexionClass{
    
+    private $_id;
     private $_username;
     private $_password;
 
     private $_objectAccount;
 
-    public function __construct(array $post){
+    public function __construct($post){
 
-        $this->setUsername($post["username"]);
-        $this->setPassword($post["password"]);
+        $this->hydrate($post);
 
+    }
+
+    public function hydrate(array $donnees)
+    {
+      foreach ($donnees as $key => $value)
+      {
+        // On récupère le nom du setter correspondant à l'attribut.
+        $method = 'set'.ucfirst($key);
+            
+        // Si le setter correspondant existe.
+        if (method_exists($this, $method))
+        {
+          // On appelle le setter.
+          $this->$method($value);
+        }
+      }
     }
 
     //SETTER
+    public function setId($id)
+    {
+      $this->_id = (int) $id;
+    }
+
     public function setUsername($username){
         $this->_username = $username;    
     }
+
     public function setPassword($password){
         $this->_password = $password;
     }
@@ -39,16 +61,17 @@ class connexionClass{
         //Username OK.
         if(password_verify($this->getPassword(), $this->_objectAccount['password'])){
           //Password OK.
-          $this->connectionUser();
+          $this->openSessionUser();
+          return true ;
           echo "PASSWORD OK";
         }else{
           //PASSWORD ERROR.
-          $this->connectionError();
+          return false;
           echo "PASSWORD ERROR";
         }
       }else{
         //USERNAME ERROR.
-        $this->connectionError();
+        return false;
         echo "USERNAME ERROR";
       }
     }
@@ -67,12 +90,19 @@ class connexionClass{
     }
 
     //SESSION START
-    public function openSessionUser(){
+    public function openSessionUser(){ 
       if(!isset($_SESSION)){
         session_start();
-        $_SESSION['username'] = $this->_objectAccount['username'];
+        $tabUser = array ( "username" => $this->_username );
+        $_SESSION['user'] = $tabUser;
       }
     }
+
+    public function desrtoySessionUser(){
+        if(session_destroy()){
+          header("Location: index.php?action=login");
+        }
+      }
 
     
 }

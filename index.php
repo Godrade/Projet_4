@@ -1,8 +1,9 @@
 <?php
-
 require('model/dbManager.php');
 require('controller/frontController.php');
 require('controller/connexionController.php');
+
+
 
 // SWITCH PAGE //
 if(!empty($_GET['action'])){
@@ -23,7 +24,7 @@ if(!empty($_GET['action'])){
             connexionLogin($_POST);
         break;
         case 'admin':
-            session_start();
+            checkSessionUser();
             AdminPage();
         break;
         case 'logout':

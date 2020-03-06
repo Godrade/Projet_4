@@ -28,5 +28,6 @@ function LoginPage(){
 
 function AdminPage(){
     $title = 'Administration';
+    $user = $_SESSION['user'];
     require('view/adminHome.php');
 }

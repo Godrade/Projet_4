@@ -1,7 +1,5 @@
 <?php
 require('includes/headerView.php');
-$user = $_SESSION['user'];
-//var_dump($user['username']);
 ?>
 
 <div style="padding: 10%; text-align: center;">

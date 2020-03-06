@@ -9,7 +9,6 @@ class connexionClass{
     private $_objectAccount;
 
     public function __construct($post){
-
         $this->hydrate($post);
 
     }
@@ -61,47 +60,42 @@ class connexionClass{
         //Username OK.
         if(password_verify($this->getPassword(), $this->_objectAccount['password'])){
           //Password OK.
-          $this->openSessionUser();
-          return true ;
-          echo "PASSWORD OK";
+          return true;
         }else{
           //PASSWORD ERROR.
           return false;
-          echo "PASSWORD ERROR";
         }
       }else{
         //USERNAME ERROR.
         return false;
-        echo "USERNAME ERROR";
       }
     }
-
-
 
     //CONNECTION USER
     public function connectionUser(){
       $this->openSessionUser();
-      header('Location: ?action=admin');
+      return true;
     }
 
     //CONNECTION ERROR
     public function connectionError(){
-      header('Location: ?action=login');
+      return false;
     }
 
     //SESSION START
     public function openSessionUser(){ 
-      if(!isset($_SESSION)){
-        session_start();
+      if(!isset($_SESSION['user'])){
         $tabUser = array ( "username" => $this->_username );
         $_SESSION['user'] = $tabUser;
       }
     }
 
     public function desrtoySessionUser(){
-        if(session_destroy()){
-          header("Location: index.php?action=login");
+          unset($_SESSION['user']);
+        if(!isset($_SESSION['user'])){
+          return true;
         }
+        return false;
       }
 
     

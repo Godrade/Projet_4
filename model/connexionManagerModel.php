@@ -12,7 +12,7 @@ class connexionManagerModel{
      
     }
 
-    public function connexionUser(){
+    public function selectUser(){
       $requete = $this->_db->prepare("SELECT username, password FROM user WHERE username = :user");
       $requete->bindValue("user", $this->_objectUser->getUsername());
       $requete->execute();

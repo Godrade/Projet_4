@@ -1,47 +1,47 @@
 <?php
 
+session_start();
 require('class/connexionClass.php');
 require('model/connexionManagerModel.php');
 
 
+
 function connexionLogin($post){
   
-    $ObjetUser = new connexionClass($post);
-    $dbuser = new connexionManagerModel($ObjetUser);
+  $ObjetUser = new connexionClass($post);
+  $dbuser = new connexionManagerModel($ObjetUser);
 
-    $reponse = $dbuser->connexionUser();
+  $reponse = $dbuser->selectUser();
 
-    //var_dump($reponse);
+  $ObjetUser->setObjectAccount($reponse);
+  $reponseConnexion = $ObjetUser->verifyConnection();
+  
 
-    $ObjetUser->setObjectAccount($reponse);
-    $reponseConnexion = $ObjetUser->verifyConnection();
-
-    // exit();
-    
-    if($reponseConnexion){
-      // AdminPage();
-      header('Location: ?action=admin');
-    }else{
-      LoginPage();
-    }
+  if($reponseConnexion){
+    $ObjetUser->connectionUser();
+    header('Location: ?action=admin');
+  }else{
+    header('Location: ?action=login');
+  }
 
 }
 
 //SESSION DESTROY
 function desrtoySessionUser(){
-  session_start();
-  var_dump($_SESSION);
-
   $ObjetUser = new connexionClass($_SESSION["user"]);
   $ObjetUser->desrtoySessionUser();
+  var_dump($_SESSION["user"]);
 
+  if($ObjetUser->desrtoySessionUser() == true){
+    header("Location: index.php?action=login");
   }
+
+}
 
   //SESSION CHECK
-  function checkSessionUser(){
-    // session_start();
-    if(!isset($_SESSION["username"])){
-        header("Location: index.php?action=login");
-        exit();   
-    }
+function checkSessionUser(){
+  if(!isset($_SESSION["user"])){
+      header("Location: index.php?action=login");
   }
+  var_dump($_SESSION["user"]);
+}

@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title><?php echo $title ?></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title><?php echo $title ?></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
+    <script src="vendor/ckeditor/ckeditor-full/ckeditor.js"></script>
+    <link rel="stylesheet" href="public/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body id="page-top">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="?action=home">Jean Forteroche</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive"> 
+                <ul class="nav navbar-nav ml-auto text-uppercase">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="?action=allarticle">chapitres</a></li>
+                    
+                    <?php if($user != NULL){
+                        echo '<li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="?action=admin">Pannel Admin</a></li>
+                        <li class="nav-item" role="presentation"><a href="?action=logout" class="nav-link js-scroll-trigger"><i class="fas fa-sign-out-alt"></i></a></li>';                         
+                    }else{
+                        echo '<li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="?action=login">CONNEXION</a></li>';
+                    }
+                    ?>
 
-        <!-- bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/6A7DF325-831E-7C48-8B00-00762AED31FB/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="http://gc.kis.v2.scr.kaspersky-labs.com/7250F2FF-D828-B64C-97E5-95A3C8008BA8/abn/main.css"/><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-        <!-- assets -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <link rel="stylesheet" href="public/css/login.css">
-        <link rel="stylesheet" href="public/css/style.css">
-        <script src="vendor/ckeditor/ckeditor-full/ckeditor.js"></script>
-    </head>
-<body>
-    <nav class="menu">
-        <div class="menuName">
-            <h3 id="menuTitle">Jean Forteroche</h3>
-        </div>
-        <div class="menuList">
-            <ul>
-                <li><a href="?action=home">Accueil</a></li>
-                <li><a href="?action=allarticle">Article</a></li>
-
-                <!-- ADMIN -->
-                <li><a href="?action=login" class="menuAdmin">Connexion</a></li>
-            </ul>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+            </div>
         </div>
     </nav>

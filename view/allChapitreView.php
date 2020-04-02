@@ -1,149 +1,30 @@
 <?php
 require('includes/headerView.php');
-require('includes/sliderView.php');
 ?>
-
- <!-- CHAPITRE -->
- <section class="container-fluid bluebackgroud">
-    <div class="row">
-        <div class="col-12">
-            <div class="presentationTitle text-white">
-                <h2>- Les chapitres -</h2>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/2.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 1</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
+    <section id="portfolio" class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase section-heading">Les Chapitres</h2>
+                    <h3 class="section-subheading text-muted">Tous les chapitres ici !</h3>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/3.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 2</h4>
+            <div class="row">
+            <?php foreach ($tabArticles as $key => $data) { ?>
+                <div class="col-sm-6 col-md-4 portfolio-item">
+                    <a class="portfolio-link" href="?action=viewarticle&id=<?= $data['id'] ?>">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
+                        </div><img class="img-fluid" src="public/chapitre/2-thumbnail.jpg"></a>
+                    <div class="portfolio-caption">
+                        <h4><?= $data['name'] ?></h4>
+                        <p class="text-muted"><?= $data['creation_date'] ?></p>
                     </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
                 </div>
+            <?php } ?>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/2.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 1</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/3.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 2</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/2.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 1</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/3.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 2</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/2.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 1</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="chapitreContainer">
-                <div class="imgPreview">
-                    <img src="public/image/previewChapitre/3.jpg">
-                </div>
-                <div class="chapitreBlockContent">
-                    <div class="chapitreName">
-                        <h4>Chapitre 2</h4>
-                    </div>
-                    <div class="chapitreContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim, sit amet eleifend massa laoreet.</p>
-                    </div>
-                    <a href="#" class="btn btn-1">Lire le chapitre</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+    </section>
 <?php
 require('includes/footerView.php');
 ?>

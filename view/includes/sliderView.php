@@ -1,22 +1,7 @@
-    <header>
-        <div id="slider1" class="slider_box">
-            <div class="image_slider">
-              <img alt="alaska" name="slide">
-            </div>
-            <div class="arrow_left_slider arriere">
-                <div class="arrow-position">
-                    <i class="fas fa-angle-left fa-2x"></i>
-                </div>
-            </div>
-            <div class="arrow_right_slider avant">
-                <div class="arrow-position">
-                    <i class="fas fa-angle-right fa-2x"></i>
-                </div>
-            </div>
-            <div class="circle arriere pause" >
-                <div class="circle-position">
-                    <i class="fas fas fa-play fa-2x"></i>
-                </div>
-            </div>
-          </div>
-    </header>
+<header class="masthead" style="background-image:url('public/img/header-bg.jpg');">
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in"><span>Bienvenue sur mon blog</span></div>
+            <div class="intro-heading text-uppercase"><span>Le voyage en Alaska</span></div><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" href="?action=allarticle">lIRE LES CHAPITRES</a></div>
+    </div>
+</header>

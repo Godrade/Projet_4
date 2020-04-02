@@ -8,9 +8,10 @@ class connexionClass{
 
     private $_objectAccount;
 
-    public function __construct($post){
+    public function __construct($post = false){
+       if($post != false && isset($post)){
         $this->hydrate($post);
-
+       }
     }
 
     public function hydrate(array $donnees)
@@ -91,12 +92,18 @@ class connexionClass{
     }
 
     public function desrtoySessionUser(){
-          unset($_SESSION['user']);
+      unset($_SESSION['user']);
         if(!isset($_SESSION['user'])){
           return true;
-        }
-        return false;
       }
+      return false;
+    }
 
-    
+    public function checkConnect(){
+      if(!isset($_SESSION["user"])){
+        return false;
+      }else{
+        return true;
+      }
+    }
 }

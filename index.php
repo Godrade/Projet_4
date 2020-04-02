@@ -2,6 +2,7 @@
 require('model/dbManager.php');
 require('controller/frontController.php');
 require('controller/connexionController.php');
+require('controller/articlesController.php');
 
 
 
@@ -10,17 +11,17 @@ if(!empty($_GET['action'])){
     switch($_GET['action']){
         case 'home':
             HomePage();
-       break;
-       case 'allarticle':
+        break;
+        case 'allarticle':
             FullArticlePage();
-       break;
-       case 'article':
+        break;
+        case 'article':
             ArticlePage();
-       break;
-       case 'login':
+        break;
+        case 'login':
            LoginPage();
-       break;
-       case 'connexionlogin':
+        break;
+        case 'connexionlogin':
             connexionLogin($_POST);
         break;
         case 'admin':
@@ -30,10 +31,25 @@ if(!empty($_GET['action'])){
         case 'logout':
             desrtoySessionUser();
         break;
-       default: 
-           DefaultPage();
-   }
-}else{
-    DefaultPage();
+        case 'addarticle':
+            addArticle($_POST);
+        break;
+        case 'updatearticle':
+            updateArticle($_POST);
+        break;
+        case 'delarticle':
+            removeArticle($_GET);
+        break;
+        case 'editarticle':
+            editArticle($_GET);
+        break;
+        case 'viewarticle':
+            readSigleArticle($_GET);
+        break;
+        default:
+            HomePage();
+    }
+    }else{
+        HomePage();
 }
  

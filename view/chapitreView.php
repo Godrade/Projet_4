@@ -1,6 +1,5 @@
 <?php
 require('includes/headerView.php');
-require('includes/sliderView.php');
 ?>
 
     <!-- Chapitre -->
@@ -9,10 +8,12 @@ require('includes/sliderView.php');
             <div class="articleContent">
                 <div class="col-12">
                     <div class="chapitreImg full">
-                        <img src="public/image/fullPreview/1.jpg">
+                        <!--<img src="public/image/fullPreview/1.jpg">-->
                     </div>
                     <div class="articleText">
-                        
+                        <?= $articleReturn['name']; ?>
+                        <?= $articleReturn['content']; ?>
+                        <?= $articleReturn['creation_date']; ?>
                     </div>
                 </div>
             </div>

@@ -1,27 +1,15 @@
 <?php
 
 /* ROUTE */
-function DefaultPage(){
-    $title = 'Accueil';
-    require('view/homeView.php');
-}
-
 function HomePage(){
+    $user = $_SESSION['user'];
     $title = 'Accueil';
+    $tabArticles = chapitreHomePage();
     require('view/homeView.php');
-}
-
-function FullArticlePage(){
-    $title = 'Tous les chapitres';
-    require('view/allChapitreView.php');
-}
-
-function ArticlePage(){
-    $title = 'Chapitre #1';
-    require('view/ChapitreView.php');
 }
 
 function LoginPage(){
+    $user = $_SESSION['user'];
     $title = 'Connexion Administrateur';
     require('view/loginView.php');
 }
@@ -29,5 +17,6 @@ function LoginPage(){
 function AdminPage(){
     $title = 'Administration';
     $user = $_SESSION['user'];
+    $tabArticles = chapitreAll();
     require('view/adminHome.php');
 }

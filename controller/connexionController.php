@@ -4,8 +4,6 @@ session_start();
 require('class/connexionClass.php');
 require('model/connexionManagerModel.php');
 
-
-
 function connexionLogin($post){
   
   $ObjetUser = new connexionClass($post);
@@ -30,7 +28,6 @@ function connexionLogin($post){
 function desrtoySessionUser(){
   $ObjetUser = new connexionClass($_SESSION["user"]);
   $ObjetUser->desrtoySessionUser();
-  var_dump($_SESSION["user"]);
 
   if($ObjetUser->desrtoySessionUser() == true){
     header("Location: index.php?action=login");
@@ -40,8 +37,11 @@ function desrtoySessionUser(){
 
   //SESSION CHECK
 function checkSessionUser(){
-  if(!isset($_SESSION["user"])){
-      header("Location: index.php?action=login");
-  }
-  var_dump($_SESSION["user"]);
+  $ObjetUser = new connexionClass();
+  $reponseConnect = $ObjetUser->checkConnect();
+
+  if(!$reponseConnect){
+    header("Location: index.php?action=login");
+  } 
+  
 }

@@ -69,4 +69,23 @@ class articlesManagerModel{
       $chapitre = $requete->fetch(PDO::FETCH_ASSOC);
       return $chapitre;
     }
+
+    public function addCommentaire(){
+      $requete = $this->_db->prepare("INSERT INTO comment (`idArticle`, `creation_date`, `content`, `name`) VALUES (:idArticle, :creation_date, :content, :name)");
+      $requete->bindValue("idArticle", $this->_object->getIdArticle());
+      $requete->bindValue("name", $this->_object->getUserName());
+      $requete->bindValue("creation_date", date("Y-m-d H:i:s"));
+      $requete->bindValue("content", $this->_object->getContent());
+      $requete->execute();
+      $chapitre = $requete->fetchAll();
+      return $this->_object;
+    }
+
+    public function getCommentaireById(){
+      $requete = $this->_db->prepare("SELECT * FROM comment WHERE idArticle = :idArticle");
+      $requete->bindValue("idArticle", $this->_object->getId());
+      $requete->execute();
+      $rep = $requete->fetchAll();
+      return $rep;
+    }
 }

@@ -22,42 +22,30 @@ require('includes/headerView.php');
     <hr>
     <section class="container">
         <div class="row">
-            <div class="commentaireBlock">
-                <div class="col-12">
+            <div class="col-12">
+                <div class="containerForm">
+                    <h2>Poster un commentaire</h2>
+                    <form method="post" action="?action=addCommentaire">
+                        <input type="hidden" name="idArticle" id="idArticle" class="input-Custom" value="<?= $articleReturn['id']; ?>">
+                        <input type="text" name="username" id="username" class="input-Custom">
+                        <input type="text" name="content" id="editeur" class="ckeditor">
+                        <button type="submit" class="btn btn-success">Commenter</button>
+                    </form>
+                </div>
+            </div>
+            <?php foreach ($tabCommentaire as $key => $data) { ?>
+            <div class="col-12">
+                <div class="commentaireBlock">
                     <div class="commentaireText">
-                        <h5>Léo Freezou <span class="date">Le 05/11/19 à 18h35</span></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim</p>
-                    </div>
-                    <div class="report">
-                        <i class="fas fa-exclamation-circle fa-3x red right"></i>
+                        <h5><?= $data['name'] ?><span class="date"> Le <?= $data['creation_date'] ?></span></h5>
+                        <p><?= $data['content'] ?></p>
+                        <a href="?action=signalCommentaire&id=<?= $data['id'] ?>" class="text-danger">Signaler</a>
                     </div>
                 </div>
             </div>
-            <div class="commentaireBlock">
-                <div class="col-12">
-                    <div class="commentaireText">
-                        <h5>Léo Freezou <span class="date">Le 05/11/19 à 18h35</span></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim</p>
-                    </div>
-                    <div class="report">
-                        <i class="fas fa-exclamation-circle fa-3x red right"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="commentaireBlock">
-                <div class="col-12">
-                    <div class="commentaireText">
-                        <h5>Léo Freezou <span class="date">Le 05/11/19 à 18h35</span></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus augue eu tortor dignissim</p>
-                    </div>
-                    <div class="report">
-                        <i class="fas fa-exclamation-circle fa-3x red right"></i>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </section>
-
 <?php
 require('includes/footerView.php');
 ?>

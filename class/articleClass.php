@@ -3,6 +3,7 @@
 class articleClass{
    
     private $_id;
+    private $_idArticle;
     private $_title;
     private $_content;
     private $_createdDate;
@@ -33,6 +34,10 @@ class articleClass{
       $this->_id = (int) $id;
     }
 
+    public function setIdArticle($idArticle){
+      $this->_idArticle = (int) $idArticle;
+    }
+
     public function setUsername($username){
         $this->_username = htmlspecialchars($username);    
     }
@@ -42,7 +47,7 @@ class articleClass{
     }
 
     public function setContent($content){
-      $this->_content = htmlspecialchars_decode($content);
+      $this->_content = $content;
     }
 
     public function setCreatedDate($createdDate){
@@ -55,6 +60,7 @@ class articleClass{
 
     //GETTER
     public function getId(){return $this->_id;}
+    public function getIdArticle(){return $this->_idArticle;}
     public function getUsername(){return $this->_username;}
     public function getTitle(){return $this->_title;}
     public function getContent(){return $this->_content;}

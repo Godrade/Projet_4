@@ -43,6 +43,9 @@ if(!empty($_GET['action'])){
         case 'editarticle':
             editArticle($_GET);
         break;
+        case 'addCommentaire':
+            addCommentaire($_POST);
+        break;
         case 'viewarticle':
             readSigleArticle($_GET);
         break;
@@ -52,4 +55,3 @@ if(!empty($_GET['action'])){
     }else{
         HomePage();
 }
- 

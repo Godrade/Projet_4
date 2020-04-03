@@ -17,6 +17,7 @@ function readSigleArticle($id){
     $article = new articleClass($id);
     $articleDb = new articlesManagerModel($article);
     $rep = $articleDb->SelectArticleById();
+    $tabCommentaire = $articleDb->getCommentaireById();
     $articleReturn = $rep;
     $title = $articleReturn['name'];
     require('view/ChapitreView.php');
@@ -25,7 +26,6 @@ function readSigleArticle($id){
 // Back-end
 
 function addArticle($post){
-    $user = $_SESSION['user'];
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
     $rep = $articleDb->addArticle();
@@ -45,7 +45,6 @@ function removeArticle($get){
 }
 
 function editArticle($post){
-    $user = $_SESSION['user'];
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
     $rep = $articleDb->SelectArticleById();
@@ -73,4 +72,13 @@ function chapitreHomePage(){
     $chapitreDb = new articlesManagerModel();
     $tabArticles = $chapitreDb->chapitreHomePage();
     return $tabArticles;
+}
+
+function addCommentaire($post){
+    $data = $post;
+    $commentaire = new articleClass($post);
+    $db = new articlesManagerModel($commentaire);
+    $rep = $db->addCommentaire();
+    var_dump($data);
+    header('Location: ?action=viewarticle&id=' . $data["idArticle"] . '');
 }

@@ -5,7 +5,7 @@ require('includes/headerView.php');
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            <div class="articleAdd">
+            <div class="blockcontainer">
                 <div class="formulaireArticle">
                     <form class="" method="post" action="?action=updatearticle">
                         <h2>Ajouter un chapitre</h2>

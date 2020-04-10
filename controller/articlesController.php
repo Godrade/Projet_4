@@ -6,20 +6,27 @@ require('model/articlesManagerModel.php');
 
 // Front-end
 function FullArticlePage(){
-    $user = $_SESSION['user'];
     $title = 'Tous les chapitres';
     $tabArticles = chapitreAll();
     require('view/allChapitreView.php');
 }
 
-function readSigleArticle($id){
+/* function readSigleArticle($id){
     $user = $_SESSION['user'];
     $article = new articleClass($id);
     $articleDb = new articlesManagerModel($article);
+    $test = new commentaireManagerModel($article);
     $rep = $articleDb->SelectArticleById();
-    $tabCommentaire = $articleDb->getCommentaireById();
+    $tabCommentaire = $test->getCommentaireById();
     $articleReturn = $rep;
     $title = $articleReturn['name'];
+    require('view/ChapitreView.php');
+} */
+
+function readSigleArticle($id){
+    $tabArticle = getArticle($id);
+    $tabCommentaire = getCommentaire($id);
+    $title = $tabArticle['name'];
     require('view/ChapitreView.php');
 }
 
@@ -48,7 +55,12 @@ function editArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
     $rep = $articleDb->SelectArticleById();
-    $data = $rep;
+    if($rep == false){
+        //+ Message eurreur
+        header('Location: ?action=admin');
+        exit();
+    }
+    $data = $rep;    
     $title = $rep['name'];
     require('view/articleUpdateView.php');
 }
@@ -74,11 +86,9 @@ function chapitreHomePage(){
     return $tabArticles;
 }
 
-function addCommentaire($post){
-    $data = $post;
-    $commentaire = new articleClass($post);
-    $db = new articlesManagerModel($commentaire);
-    $rep = $db->addCommentaire();
-    var_dump($data);
-    header('Location: ?action=viewarticle&id=' . $data["idArticle"] . '');
+function getArticle($id){
+    $article = new articleClass($id);
+    $articleDb = new articlesManagerModel($article);
+    $tab = $articleDb->SelectArticleById();
+    return $tab;
 }

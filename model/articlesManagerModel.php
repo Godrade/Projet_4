@@ -10,7 +10,6 @@ class articlesManagerModel{
         $this->_object = $post;
        }
       $this->_db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');
-      date_default_timezone_set('Europe/Paris');
     }
 
     public function addArticle(){
@@ -57,8 +56,8 @@ class articlesManagerModel{
     public function chapitreHomePage(){
       $requete = $this->_db->prepare("SELECT * FROM article ORDER BY id ASC LIMIT 6");
       $requete->execute();
-      $article = $requete->fetchAll();
-      return $article;
+      $rep = $requete->fetchAll();
+      return $rep;
   }
 
     //SelecteById = Retrun tableau
@@ -66,26 +65,7 @@ class articlesManagerModel{
       $requete = $this->_db->prepare("SELECT * FROM article WHERE id = :id");
       $requete->bindValue("id", $this->_object->getId());
       $requete->execute();
-      $chapitre = $requete->fetch(PDO::FETCH_ASSOC);
-      return $chapitre;
-    }
-
-    public function addCommentaire(){
-      $requete = $this->_db->prepare("INSERT INTO comment (`idArticle`, `creation_date`, `content`, `name`) VALUES (:idArticle, :creation_date, :content, :name)");
-      $requete->bindValue("idArticle", $this->_object->getIdArticle());
-      $requete->bindValue("name", $this->_object->getUserName());
-      $requete->bindValue("creation_date", date("Y-m-d H:i:s"));
-      $requete->bindValue("content", $this->_object->getContent());
-      $requete->execute();
-      $chapitre = $requete->fetchAll();
-      return $this->_object;
-    }
-
-    public function getCommentaireById(){
-      $requete = $this->_db->prepare("SELECT * FROM comment WHERE idArticle = :idArticle");
-      $requete->bindValue("idArticle", $this->_object->getId());
-      $requete->execute();
-      $rep = $requete->fetchAll();
+      $rep = $requete->fetch();
       return $rep;
     }
 }

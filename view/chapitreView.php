@@ -11,9 +11,9 @@ require('includes/headerView.php');
                         <!--<img src="public/image/fullPreview/1.jpg">-->
                     </div>
                     <div class="articleText">
-                        <?= $articleReturn['name']; ?>
-                        <?= $articleReturn['content']; ?>
-                        <?= $articleReturn['creation_date']; ?>
+                        <?= $tabArticle['name']; ?>
+                        <?= $tabArticle['content']; ?>
+                        <?= $tabArticle['creation_date']; ?>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@ require('includes/headerView.php');
                 <div class="containerForm">
                     <h2>Poster un commentaire</h2>
                     <form method="post" action="?action=addCommentaire">
-                        <input type="hidden" name="idArticle" id="idArticle" class="input-Custom" value="<?= $articleReturn['id']; ?>">
+                        <input type="hidden" name="idArticle" id="idArticle" class="input-Custom" value="<?= $tabArticle['id']; ?>">
                         <input type="text" name="username" id="username" class="input-Custom">
                         <input type="text" name="content" id="editeur" class="ckeditor">
                         <button type="submit" class="btn btn-success">Commenter</button>
@@ -34,10 +34,11 @@ require('includes/headerView.php');
                 </div>
             </div>
             <?php foreach ($tabCommentaire as $key => $data) { ?>
+            
             <div class="col-12">
                 <div class="commentaireBlock">
                     <div class="commentaireText">
-                        <h5><?= $data['name'] ?><span class="date"> Le <?= $data['creation_date'] ?></span></h5>
+                        <h5><?= $data['name'] ?><span class="date"> Le <?= $data['createdDate'] ?></span></h5>
                         <p><?= $data['content'] ?></p>
                         <a href="?action=signalCommentaire&id=<?= $data['id'] ?>" class="text-danger">Signaler</a>
                     </div>

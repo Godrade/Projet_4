@@ -1,8 +1,10 @@
 <?php
+date_default_timezone_set('Europe/Paris');
 require('model/dbManager.php');
 require('controller/frontController.php');
 require('controller/connexionController.php');
 require('controller/articlesController.php');
+require('controller/commentaireController.php');
 
 
 
@@ -48,6 +50,16 @@ if(!empty($_GET['action'])){
         break;
         case 'viewarticle':
             readSigleArticle($_GET);
+        break;
+        case 'signalCommentaire':
+            reportCommentaire($_GET);
+        break;
+        case 'delCommentaire':
+            delCommentaire($_GET);
+        break;
+        case 'viewCommentaire':
+            checkSessionUser();
+            viewCommentaire($_GET);
         break;
         default:
             HomePage();

@@ -43,6 +43,35 @@ require('includes/headerView.php');
         </table>
     </div>
 </section>
+<section class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id Article</th>
+                    <th scope="col">Envoyer</th>
+                    <th scope="col">Par</th>
+                    <th scope="col">Nombre de report</th>
+                    <th scope="col">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($tabCommentaire as $key => $data) { ?>
+                <tr>
+                    <td><?= $data['idArticle'] ?></td>
+                    <td><?= $data['createdDate'] ?></td>
+                    <td><?= $data['name'] ?></td>
+                    <td><?= $data['report'] ?></td>
+                    <td>
+                        <a href="?action=delCommentaire&id=<?= $data['id'] ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="?action=viewCommentaire&id=<?= $data['id'] ?>" class="text-success"><i class="fas fa-external-link-alt"></i></a>
+                    </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 <br><br><br>
 

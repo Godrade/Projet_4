@@ -24,7 +24,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="?action=allarticle">chapitres</a></li>
                     
-                    <?php if($user != NULL){
+                    <?php if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
                         echo '<li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="?action=admin">Pannel Admin</a></li>
                         <li class="nav-item" role="presentation"><a href="?action=logout" class="nav-link js-scroll-trigger"><i class="fas fa-sign-out-alt"></i></a></li>';                         
                     }else{

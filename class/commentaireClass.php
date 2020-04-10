@@ -1,18 +1,19 @@
 <?php
 
-class articleClass{
+class commentaireClass{
    
     private $_id;
     private $_idArticle;
-    private $_title;
     private $_content;
-    private $_createdDate;
     private $_username;
-    private $_image;
+    private $_report;
+    private $_createdDate;
+    private $_newDate;
 
 
     public function __construct($data){
        if(isset($data)){
+        $this->setNewDate();
         $this->hydrate($data);
        }
     }
@@ -42,30 +43,33 @@ class articleClass{
         $this->_username = htmlspecialchars($username);    
     }
 
-    public function setTitle($title){
-        $this->_title = htmlspecialchars($title);    
+    public function setContent($content){
+        $this->_content = htmlspecialchars($content);    
     }
 
-    public function setContent($content){
-      $this->_content = $content;
+    public function setReport($report){
+        $this->_report = htmlspecialchars($report);    
     }
 
     public function setCreatedDate($createdDate){
-      $this->_createdDate = date("Y-m-d H:i:s");    
+        $this->_createdDate = htmlspecialchars($createdDate);
     }
-
-    public function setImage($image){
-      $this->_image = $image;    
+    
+    public function setNewDate(){
+        $this->_newDate = date("Y-m-d H:i:s");   
     }
 
     //GETTER
     public function getId(){return $this->_id;}
     public function getIdArticle(){return $this->_idArticle;}
     public function getUsername(){return $this->_username;}
-    public function getTitle(){return $this->_title;}
     public function getContent(){return $this->_content;}
+    public function getReport(){return $this->_report;}
     public function getCreatedDate(){return $this->_createdDate;}
-    public function getImage(){return $this->_image;}
+    public function getNewDate(){return $this->_newDate;}
 
     //FUNCTIONS
+    public function reportCommentaire(){
+        $this->_report++;
+    }
 }

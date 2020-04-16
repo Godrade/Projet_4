@@ -14,13 +14,12 @@ class articlesManagerModel{
 
     public function addArticle(){
       $requete = $this->_db->prepare("INSERT INTO article (`name`, `creation_date`, `content`, `image`) VALUES (:name, :creation_date, :content, :image)");
-      $requete->bindValue("name", $this->_object->getTitle());
-      $requete->bindValue("creation_date", date("Y-m-d H:i:s"));
-      $requete->bindValue("content", $this->_object->getContent());
-      $requete->bindValue("image", $this->_object->getImage());
+      $requete->bindValue(":name", $this->_object->getTitle(), PDO::PARAM_STR);
+      $requete->bindValue(":creation_date", date("Y-m-d H:i:s"), PDO::PARAM_STR);
+      $requete->bindValue(":content", $this->_object->getContent(), PDO::PARAM_STR);
+      $requete->bindValue(":image", $this->_object->getImage(), PDO::PARAM_STR);
       $requete->execute();
-      $chapitre = $requete->fetchAll();
-      return $this->_object;
+      return $requete;
     }
 
     //Update = Retrun tableau

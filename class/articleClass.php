@@ -10,6 +10,7 @@ class articleClass{
     private $_username;
     private $_image;
 
+    private $_dbReturn;
 
     public function __construct($data){
        if(isset($data)){
@@ -43,11 +44,19 @@ class articleClass{
     }
 
     public function setTitle($title){
-        $this->_title = htmlspecialchars($title);    
+      if(ctype_space($title)){
+        return false;
+      }else{
+        $this->_title = htmlspecialchars($title);
+      }
     }
 
     public function setContent($content){
-      $this->_content = $content;
+      if(ctype_space($content)){
+        return false;
+      }else{
+        $this->_content = $content;
+      }
     }
 
     public function setCreatedDate($createdDate){
@@ -56,6 +65,10 @@ class articleClass{
 
     public function setImage($image){
       $this->_image = $image;    
+    }
+
+    public function setDbReturn($dbReturn){
+      $this->_dbReturn = $dbReturn;    
     }
 
     //GETTER
@@ -68,4 +81,19 @@ class articleClass{
     public function getImage(){return $this->_image;}
 
     //FUNCTIONS
+    public function check(){
+      if($this->getTitle() == false || $this->getContent() == false){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+    public function checkerById(){
+      if(!$this->_dbReturn){
+        return false;
+      }else{
+        return true;
+      }
+    }
 }

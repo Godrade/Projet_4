@@ -19,6 +19,7 @@
         </div>
     </footer>
     <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/commentaire.js"></script>
     <script src="public/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="public/js/agency.js"></script>

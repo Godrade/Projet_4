@@ -47,12 +47,12 @@ class commentaireManagerModel{
     }
 
     public function addReportCommentaire(){
-        $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
-        $requete->bindValue("report", $this->_object->getReport());
-        $requete->bindValue("id", $this->_object->getId());
-        $requete->execute();
-        $rep = $requete->fetch(PDO::FETCH_ASSOC);
-        return $rep;
+      $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
+      $requete->bindValue("report", $this->_object->getReport());
+      $requete->bindValue("id", $this->_object->getId());
+      $requete->execute();
+      $rep = $requete->fetch(PDO::FETCH_ASSOC);
+      return $rep;
     }
 
     public function deleteCommentaire(){
@@ -62,4 +62,11 @@ class commentaireManagerModel{
         $rep = $requete->fetch(PDO::FETCH_ASSOC);
         return $rep;
     }
+
+    public function deleteCommentaireByArticle(){
+      $requete = $this->_db->prepare("DELETE FROM comment WHERE idArticle = :idArticle");
+      $requete->bindValue("idArticle", $this->_object->getId());
+      $requete->execute();
+      return $requete;
+  }
 }

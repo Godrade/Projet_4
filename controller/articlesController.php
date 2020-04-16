@@ -11,23 +11,15 @@ function FullArticlePage(){
     require('view/allChapitreView.php');
 }
 
-/* function readSigleArticle($id){
-    $user = $_SESSION['user'];
-    $article = new articleClass($id);
-    $articleDb = new articlesManagerModel($article);
-    $test = new commentaireManagerModel($article);
-    $rep = $articleDb->SelectArticleById();
-    $tabCommentaire = $test->getCommentaireById();
-    $articleReturn = $rep;
-    $title = $articleReturn['name'];
-    require('view/ChapitreView.php');
-} */
-
 function readSigleArticle($id){
     $tabArticle = getArticle($id);
-    $tabCommentaire = getCommentaire($id);
-    $title = $tabArticle['name'];
-    require('view/ChapitreView.php');
+    if($tabArticle == false){
+        header('Location: ?action=home');
+    }else{
+       $tabCommentaire = getCommentaire($id);
+        $title = $tabArticle['name'];
+        require('view/ChapitreView.php'); 
+    }
 }
 
 // Back-end
@@ -35,42 +27,46 @@ function readSigleArticle($id){
 function addArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    $rep = $articleDb->addArticle();
-
-    if($rep){
-        header('Location: ?action=admin');
+    if($article->check() == true){
+        $articleDb->addArticle();
+    }else{
+        echo('error');
     }
+    header('Location: ?action=admin');
 }
 
 function removeArticle($get){
     $article = new articleClass($get);
     $articleDb = new articlesManagerModel($article);
-    $rep = $articleDb->deleteArticle();
-    if($rep){
+    $articleDel = $articleDb->deleteArticle();
+    $delComemmentaire = delCommentaireByArticle($get);
+    if($articleDel && $delComemmentaire){
         header('Location: ?action=admin');
     }
 }
 
 function editArticle($post){
-    $article = new articleClass($post);
-    $articleDb = new articlesManagerModel($article);
-    $rep = $articleDb->SelectArticleById();
-    if($rep == false){
-        //+ Message eurreur
+    $tabArticle = getArticle($post);
+    if($tabArticle == false){
         header('Location: ?action=admin');
-        exit();
+    }else{
+        $data = $tabArticle;
+        $title = $data['name'];
+        require('view/articleUpdateView.php'); 
     }
-    $data = $rep;    
-    $title = $rep['name'];
-    require('view/articleUpdateView.php');
 }
 
 function updateArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    $rep = $articleDb->updateArticle();
-    if($rep){
-        header('Location: ?action=admin');
+    if($article->check() == true){
+        $rep = $articleDb->updateArticle();
+        if($rep){
+            header('Location: ?action=admin');
+        }
+    }else{
+        echo('error');
+        header('Location: ?action=home');
     }
 }
 
@@ -82,13 +78,14 @@ function chapitreAll(){
 
 function chapitreHomePage(){
     $chapitreDb = new articlesManagerModel();
-    $tabArticles = $chapitreDb->chapitreHomePage();
-    return $tabArticles;
+    $tab = $chapitreDb->chapitreHomePage();
+    return $tab;
 }
 
 function getArticle($id){
     $article = new articleClass($id);
     $articleDb = new articlesManagerModel($article);
     $tab = $articleDb->SelectArticleById();
+    $article->checkerById($tab);
     return $tab;
 }

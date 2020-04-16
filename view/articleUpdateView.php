@@ -1,8 +1,7 @@
 <?php
 require('includes/headerView.php');
 ?>
-<br>
-<div class="container">
+<section class="container">
     <div class="row">
         <div class="col-md-10">
             <div class="blockcontainer">
@@ -19,7 +18,7 @@ require('includes/headerView.php');
             </div>
         </div>
     </div>
-</div>
+</section>
 <br><br><br>
 <?php
 require('includes/footerView.php');

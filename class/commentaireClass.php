@@ -10,6 +10,8 @@ class commentaireClass{
     private $_createdDate;
     private $_newDate;
 
+    private $_dbReturn;
+
 
     public function __construct($data){
        if(isset($data)){
@@ -40,11 +42,23 @@ class commentaireClass{
     }
 
     public function setUsername($username){
-        $this->_username = htmlspecialchars($username);    
+      if(ctype_space(htmlspecialchars($username))){
+        return false;
+      }elseif(strlen(htmlspecialchars($username)) > 30){
+        return false;
+      }else{
+        $this->_username = htmlspecialchars($username); 
+      }
     }
 
     public function setContent($content){
-        $this->_content = htmlspecialchars($content);    
+      if(ctype_space(htmlspecialchars($content))){
+        return false;
+      }elseif(strlen(htmlspecialchars($content)) > 240){
+        return false;
+      }else{
+        $this->_content = htmlspecialchars($content);
+      }
     }
 
     public function setReport($report){
@@ -59,6 +73,10 @@ class commentaireClass{
         $this->_newDate = date("Y-m-d H:i:s");   
     }
 
+    public function setDbReturn($dbReturn){
+      $this->_dbReturn = $dbReturn;    
+    }
+
     //GETTER
     public function getId(){return $this->_id;}
     public function getIdArticle(){return $this->_idArticle;}
@@ -71,5 +89,21 @@ class commentaireClass{
     //FUNCTIONS
     public function reportCommentaire(){
         $this->_report++;
+    }
+
+    public function check(){
+      if($this->getUsername() == false || $this->getContent() == false){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+    public function checkComment(){
+      if(!$this->_dbReturn){
+        return false;
+      }else{
+        return true;
+      }
     }
 }

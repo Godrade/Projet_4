@@ -54,7 +54,7 @@ class commentaireClass{
     public function setContent($content){
       if(ctype_space(htmlspecialchars($content))){
         return false;
-      }elseif(strlen(htmlspecialchars($content)) > 240){
+      }elseif(strlen(htmlspecialchars($content)) > 500){
         return false;
       }else{
         $this->_content = htmlspecialchars($content);
@@ -89,6 +89,10 @@ class commentaireClass{
     //FUNCTIONS
     public function reportCommentaire(){
         $this->_report++;
+    }
+
+    public function resetReport(){
+      $this->_report = 0;
     }
 
     public function check(){

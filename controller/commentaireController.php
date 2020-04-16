@@ -50,6 +50,15 @@ function reportCommentaire($id){
     header('Location: ?action=viewarticle&id=' . $tabCommentaire["idArticle"] . '#commentaire');
 }
 
+function resetReport($id){
+    $tabCommentaire = SelectCommentaire($id);
+    $com = new commentaireClass($tabCommentaire);
+    $db = new commentaireManagerModel($com);
+    $com->resetReport();
+    $db->resetReport();
+    header('Location: ?action=admin#articleReport');
+}
+
 function getCommentaireReport(){
     $db = new commentaireManagerModel();
     $tab = $db->getReportCommentaire();
@@ -60,7 +69,7 @@ function delCommentaire($id){
     $com = new commentaireClass($id);
     $db = new commentaireManagerModel($com);
     $tab = $db->deleteCommentaire();
-    header('Location: ?action=admin');
+    header('Location: ?action=admin#articleReport');
 }
 
 function delCommentaireByArticle($id){

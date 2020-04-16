@@ -34,7 +34,7 @@ if(isset($_SESSION['showError'])){
                 <div class="comment">
                     <h5 class="commentTitle"><?= $data['name'] ?> | <span class="dataComment"> Envoyer le : <?= $data['createdDate'] ?></span></h5>
                     <p><?= $data['content'] ?></p>
-                    <p class="signalp">Un probléme avec ce commentaire ? <a href="?action=signalCommentaire&id=<?= $data['id'] ?>" class="signal"> Signaler</a></p>
+                    <p class="signalp">Un probléme avec ce commentaire ? <a href="?action=signalCommentaire&id=<?= $data['id'] ?>" class="signal"> Signaler (<?= $data['report'] ?>)</a></p>
                 </div>
                 <?php } ?>
             </div>
@@ -44,9 +44,9 @@ if(isset($_SESSION['showError'])){
                     <h3>Poster un commentaire</h3>
                     <form method="post" action="?action=addCommentaire">
                         <input type="hidden" name="idArticle" id="idArticle" value="<?= $tabArticle['id']; ?>">
-                        <input type="text" name="username" id="username" placeholder="Pseudo" required></textarea>
+                        <input type="text" name="username" id="username" placeholder="Pseudo" required>
                         <textarea placeholder="Message" name="content" id="message" required></textarea>
-                        <input type="submit" value="Envoyer"><i class="text-right" id="maxText"> 0/240</i>
+                        <input type="submit" value="Envoyer"><i class="text-right" id="maxText"></i>
                     </form>
                     <div class="error">
                         <?php

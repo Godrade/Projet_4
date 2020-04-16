@@ -19,7 +19,7 @@ require('includes/headerView.php');
     </div>
 </section>
 
-<section class="container-fluid">
+<section class="container-fluid" id="articleReport">
     <div class="row">
         <div class="col-lg-6 col-12">
             <table class="table">
@@ -64,6 +64,7 @@ require('includes/headerView.php');
                         <td>
                             <a href="?action=delCommentaire&id=<?= $data['id'] ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                             <a href="?action=viewCommentaire&id=<?= $data['id'] ?>" class="text-success"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="?action=resetReport&id=<?= $data['id'] ?>" class="text-info"><i class="fas fa-broom"></i></a>
                         </td>
                     </tr>
                 <?php } ?>

@@ -34,15 +34,19 @@ if(!empty($_GET['action'])){
             desrtoySessionUser();
         break;
         case 'addarticle':
+            checkSessionUser();
             addArticle($_POST);
         break;
         case 'updatearticle':
+            checkSessionUser();
             updateArticle($_POST);
         break;
         case 'delarticle':
+            checkSessionUser();
             removeArticle($_GET);
         break;
         case 'editarticle':
+            checkSessionUser();
             editArticle($_GET);
         break;
         case 'addCommentaire':
@@ -54,7 +58,12 @@ if(!empty($_GET['action'])){
         case 'signalCommentaire':
             reportCommentaire($_GET);
         break;
+        case 'resetReport':
+            checkSessionUser();
+            resetReport($_GET);
+        break;
         case 'delCommentaire':
+            checkSessionUser();
             delCommentaire($_GET);
         break;
         case 'viewCommentaire':

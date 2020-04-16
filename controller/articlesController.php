@@ -41,7 +41,7 @@ function removeArticle($get){
     $articleDel = $articleDb->deleteArticle();
     $delComemmentaire = delCommentaireByArticle($get);
     if($articleDel && $delComemmentaire){
-        header('Location: ?action=admin');
+        header('Location: ?action=admin#articleReport');
     }
 }
 

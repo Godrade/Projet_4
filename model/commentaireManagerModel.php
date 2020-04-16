@@ -24,7 +24,7 @@ class commentaireManagerModel{
     }
 
     public function getCommentaireById(){
-      $requete = $this->_db->prepare("SELECT * FROM comment WHERE idArticle = :idArticle");
+      $requete = $this->_db->prepare("SELECT * FROM comment WHERE idArticle = :idArticle  ORDER BY id ASC");
       $requete->bindValue("idArticle", $this->_object->getId());
       $requete->execute();
       $rep = $requete->fetchAll();
@@ -47,6 +47,15 @@ class commentaireManagerModel{
     }
 
     public function addReportCommentaire(){
+      $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
+      $requete->bindValue("report", $this->_object->getReport());
+      $requete->bindValue("id", $this->_object->getId());
+      $requete->execute();
+      $rep = $requete->fetch(PDO::FETCH_ASSOC);
+      return $rep;
+    }
+
+    public function resetReport(){
       $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
       $requete->bindValue("report", $this->_object->getReport());
       $requete->bindValue("id", $this->_object->getId());

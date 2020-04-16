@@ -11,7 +11,11 @@ require('includes/headerView.php');
                         <p>Envoyer par : <?= $tabCommentaire['name']; ?></p>
                         <p>Message : <?= $tabCommentaire['content']; ?></p>
                         <p>Envoyer le : <?= $tabCommentaire['createdDate']; ?></p>
-                        <p><a href="?action=delCommentaire&id=<?= $tabCommentaire['id'] ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a></p>
+                        <p>Report : <?= $tabCommentaire['report'] ?></p>
+                        <p><a href="?action=delCommentaire&id=<?= $tabCommentaire['id'] ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="?action=resetReport&id=<?= $tabCommentaire['id'] ?>" class="text-info"><i class="fas fa-broom"></i></a>
+                        </p>
+                        <p><a href="?action=admin" class="text-info">Retour</a></p>
                     </div>
                 </div>
             </div>

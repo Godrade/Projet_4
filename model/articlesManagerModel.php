@@ -18,8 +18,8 @@ class articlesManagerModel{
       $requete->bindValue(":creation_date", date("Y-m-d H:i:s"), PDO::PARAM_STR);
       $requete->bindValue(":content", $this->_object->getContent(), PDO::PARAM_STR);
       $requete->bindValue(":image", $this->_object->getImage(), PDO::PARAM_STR);
-      $requete->execute();
-      return $requete;
+      $rep = $requete->execute();
+      return $rep;
     }
 
     //Update = Retrun tableau
@@ -29,18 +29,16 @@ class articlesManagerModel{
       $requete->bindValue("content", $this->_object->getContent());
       $requete->bindValue("image", $this->_object->getImage());
       $requete->bindValue("id", $this->_object->getId());
-      $requete->execute();
-      $chapitre = $requete;
-      return $chapitre;
+      $rep = $requete->execute();
+      return $rep;
     }
 
     //Deleted = Retrun tableau
     public function deleteArticle(){
       $requete = $this->_db->prepare("DELETE FROM article WHERE id = :id");
       $requete->bindValue("id", $this->_object->getId());
-      $requete->execute();
-      $chapitre = $requete;
-      return $chapitre;
+      $rep = $requete->execute();
+      return $rep;
     }
 
     //SelectALL = Retrun tableau

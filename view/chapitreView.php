@@ -1,14 +1,5 @@
 <?php
 require('includes/headerView.php');
-
-if(isset($_SESSION['showError'])){
-    if($_SESSION['showError']){
-        $_SESSION['showError'] = false;
-    }else{
-        $_SESSION['error'] = array();
-    }
-}
-
 ?>
 
     <!-- Chapitre -->
@@ -18,6 +9,7 @@ if(isset($_SESSION['showError'])){
                 <div class="col-12">
                     <div class="articleText">
                         <h1><?= $tabArticle['name']; ?></h1>
+                        <img src="<?= $tabArticle['image']; ?>">
                         <?= $tabArticle['content']; ?>
                         <p>Publié le : <?= $tabArticle['creation_date']; ?></p>
                     </div>
@@ -46,17 +38,15 @@ if(isset($_SESSION['showError'])){
                         <input type="hidden" name="idArticle" id="idArticle" value="<?= $tabArticle['id']; ?>">
                         <input type="text" name="username" id="username" placeholder="Pseudo" required>
                         <textarea placeholder="Message" name="content" id="message" required></textarea>
-                        <input type="submit" value="Envoyer"><i class="text-right" id="maxText"></i>
+                        <input type="submit" value="Envoyer" id="sendCommentaire"><i class="text-right" id="maxText"></i>
                     </form>
                     <div class="error">
                         <?php
-                            if(!empty($_SESSION['error'])){
-                                echo("<p class='text-danger'>" . $_SESSION['error'][0] . "</p>");
-                            }else{
-                                if(isset($_SESSION['success']) && $_SESSION['success']){
-                                    $_SESSION['success'] = false;
-                                    echo("<p class='text-success'>Votre commentaire a été ajouté</p>"); 
-                                }
+                            if(isset($error) && !empty($error)){
+                                echo("<p class='text-danger'>" . $error . "</p>");
+                            }
+                            if(isset($success) && !empty($success)){
+                                echo("<p class='text-success'>" . $success . "</p>");
                             }
                         ?>
                     </div>

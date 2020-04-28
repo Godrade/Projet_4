@@ -5,14 +5,24 @@ require('includes/headerView.php');
 <section class="container">
     <div class="row">
         <div class="col-12">
+            <div class="error">
+            <?php
+                if(isset($error) && !empty($error)){
+                    echo("<p class='text-danger'>" . $error . "</p>");
+                }
+                if(isset($success) && !empty($success)){
+                    echo("<p class='text-success'>" . $success . "</p>");
+                }
+            ?>
+            </div>
             <div class="blockcontainer">
-                <form class="" method="post" action="?action=addarticle">
+                <form method="post" action="?action=addarticle" enctype = "multipart/form-data">
                     <h2>Ajouter un chapitre</h2>
                     <input type="text" placeholder="Nom du chapitre" class="input-Custom" name="title">
+                    <input type="file" class="input-Custom" name="image">
                     <input type="hidden" placeholder="Nom du chapitre" class="input-Custom" name="name" value="<?= $user['username'] ?>" disabled>
-                    <input type="file" class="inputCustom" name="image">
                     <textarea id="editeur" class="form-control ckeditor inputCustom" name="content"></textarea>
-                    <button type="submit" class="btn btn-success">Envoyer</button>
+                    <input type="submit" value="Envoyer" id="sendCommentaire">
                 </from>
             </div>
         </div>

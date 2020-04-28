@@ -53,7 +53,7 @@ class commentaireClass{
 
     public function setContent($content){
       if(ctype_space(htmlspecialchars($content))){
-        return false;
+        return false;      
       }elseif(strlen(htmlspecialchars($content)) > 500){
         return false;
       }else{

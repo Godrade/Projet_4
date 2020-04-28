@@ -18,8 +18,7 @@ class commentaireManagerModel{
       $requete->bindValue("name", $this->_object->getUserName());
       $requete->bindValue("createdDate", $this->_object->getNewDate());
       $requete->bindValue("content", $this->_object->getContent());
-      $requete->execute();
-      $rep = $requete->fetch();
+      $rep = $requete->execute();
       return $rep;
     }
 
@@ -50,8 +49,7 @@ class commentaireManagerModel{
       $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
       $requete->bindValue("report", $this->_object->getReport());
       $requete->bindValue("id", $this->_object->getId());
-      $requete->execute();
-      $rep = $requete->fetch(PDO::FETCH_ASSOC);
+      $rep = $requete->execute();
       return $rep;
     }
 
@@ -59,23 +57,21 @@ class commentaireManagerModel{
       $requete = $this->_db->prepare("UPDATE comment SET report = :report WHERE id = :id");
       $requete->bindValue("report", $this->_object->getReport());
       $requete->bindValue("id", $this->_object->getId());
-      $requete->execute();
-      $rep = $requete->fetch(PDO::FETCH_ASSOC);
+      $rep = $requete->execute();
       return $rep;
     }
 
     public function deleteCommentaire(){
         $requete = $this->_db->prepare("DELETE FROM comment WHERE id = :id");
         $requete->bindValue("id", $this->_object->getId());
-        $requete->execute();
-        $rep = $requete->fetch(PDO::FETCH_ASSOC);
-        return $rep;
+        $rep = $requete->execute();
+      return $rep;
     }
 
     public function deleteCommentaireByArticle(){
       $requete = $this->_db->prepare("DELETE FROM comment WHERE idArticle = :idArticle");
       $requete->bindValue("idArticle", $this->_object->getId());
-      $requete->execute();
-      return $requete;
+      $rep = $requete->execute();
+      return $rep;
   }
 }

@@ -18,13 +18,9 @@ class connexionClass{
     {
       foreach ($donnees as $key => $value)
       {
-        // On récupère le nom du setter correspondant à l'attribut.
         $method = 'set'.ucfirst($key);
-            
-        // Si le setter correspondant existe.
         if (method_exists($this, $method))
         {
-          // On appelle le setter.
           $this->$method($value);
         }
       }
@@ -64,10 +60,12 @@ class connexionClass{
           return true;
         }else{
           //PASSWORD ERROR.
+          $_SESSION['error'] = "Votre identifiant ou votre mot de passe est invalide !";
           return false;
         }
       }else{
         //USERNAME ERROR.
+        $_SESSION['error'] = "Votre identifiant ou votre mot de passe est invalide !";
         return false;
       }
     }

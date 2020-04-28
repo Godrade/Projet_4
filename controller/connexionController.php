@@ -19,8 +19,7 @@ function connexionLogin($post){
     $ObjetUser->connectionUser();
     header('Location: ?action=admin');
   }else{
-    echo($error['loginError']);
-    //header('Location: ?action=login');
+    header('Location: ?action=login');
   }
 
 }

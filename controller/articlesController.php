@@ -16,7 +16,17 @@ function readSigleArticle($id){
     if($tabArticle == false){
         header('Location: ?action=home');
     }else{
-       $tabCommentaire = getCommentaire($id);
+        
+        if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
+            $error = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        if(isset($_SESSION['success']) && !empty($_SESSION['success'])){
+            $success = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+
+        $tabCommentaire = getCommentaire($id);
         $title = $tabArticle['name'];
         require('view/ChapitreView.php'); 
     }
@@ -27,10 +37,15 @@ function readSigleArticle($id){
 function addArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    if($article->check() == true){
-        $articleDb->addArticle();
-    }else{
-        echo('error');
+    var_dump($article);
+    var_dump($_FILES);
+    if($article->check()){
+        $article->uploadFiles($post);
+        if($articleDb->addArticle()){
+            $_SESSION['success'] = "Votre article à été ajouté !";
+        }else{
+            $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+        }
     }
     header('Location: ?action=admin');
 }
@@ -38,7 +53,9 @@ function addArticle($post){
 function removeArticle($get){
     $article = new articleClass($get);
     $articleDb = new articlesManagerModel($article);
+    $tabArticle = getArticle($get);
     $articleDel = $articleDb->deleteArticle();
+    unlink($tabArticle[4]);
     $delComemmentaire = delCommentaireByArticle($get);
     if($articleDel && $delComemmentaire){
         header('Location: ?action=admin#articleReport');

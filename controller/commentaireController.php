@@ -17,11 +17,13 @@ function addCommentaire($post){
     $com = new commentaireClass($post);
     $db = new commentaireManagerModel($com);
     if($com->check() == true){
-        $rep = $db->addCommentaire();
-        $_SESSION['success'] = true;
+        if($rep = $db->addCommentaire()){
+            $_SESSION['success'] = 'Votre commentaire a été ajouté';
+        }else{
+            $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+        }
     }else{
-        $_SESSION['showError'] = true;
-        $_SESSION['error'] = array("Erreur : Votre commentaire n'as pas pu être ajouté !");
+        $_SESSION['error'] = "Erreur : Votre commentaire n'as pas pu être ajouté !";
     }
     header('Location: ?action=viewarticle&id=' . $post["idArticle"] . '#commentaire');
 }
@@ -46,7 +48,11 @@ function reportCommentaire($id){
     $com = new commentaireClass($tabCommentaire);
     $db = new commentaireManagerModel($com);
     $com->reportCommentaire();
-    $db->addReportCommentaire();
+    if($db->addReportCommentaire()){
+        $_SESSION['success'] = 'Votre signalement a bien été transmit !';
+    }else{
+        $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+    }
     header('Location: ?action=viewarticle&id=' . $tabCommentaire["idArticle"] . '#commentaire');
 }
 

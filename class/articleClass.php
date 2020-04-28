@@ -45,16 +45,28 @@ class articleClass{
 
     public function setTitle($title){
       if(ctype_space($title)){
+        $_SESSION['error'] = "Vous devez rensigner un titre !";
+        return false;
+      }elseif(strlen($title) < 0){
+        $_SESSION['error'] = "Vous devez rensigner un titre !";
         return false;
       }else{
+        $title = strtolower($title);
+        $title = ucfirst($title);
         $this->_title = htmlspecialchars($title);
       }
     }
 
     public function setContent($content){
       if(ctype_space($content)){
+        $_SESSION['error'] = "Vous devez rensigner un contenue !";
+        return false;
+      }elseif(strlen($content) < 0){
+        $_SESSION['error'] = "Vous devez rensigner un contenue !";
         return false;
       }else{
+        $content = str_replace("<script>", "", $content);
+        $content = str_replace("</script>", "", $content);
         $this->_content = $content;
       }
     }
@@ -64,7 +76,7 @@ class articleClass{
     }
 
     public function setImage($image){
-      $this->_image = $image;    
+      $this->_image = $image;
     }
 
     public function setDbReturn($dbReturn){
@@ -82,7 +94,8 @@ class articleClass{
 
     //FUNCTIONS
     public function check(){
-      if($this->getTitle() == false || $this->getContent() == false){
+      if($this->getTitle() == false || $this->getContent() == false || $_FILES['image']['error'] == 4){
+        $_SESSION['error'] = "Vous devez renseigner tout les champs !";
         return false;
       }else{
         return true;
@@ -96,4 +109,39 @@ class articleClass{
         return true;
       }
     }
+
+    public function uploadFiles($post){
+      $target_dir = "public/upload/";
+      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+      $uploadOK = 1;
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+      //Vérif image double
+      if(file_exists($target_file)){
+        echo('Erreur : Cette image existe dèjà ! <br>');
+        $_SESSION['error'] = "Erreur : Cette image existe déjà !";
+        $uploadOK = 0;
+      }
+      //Vérif size
+      if($_FILES['image']['size'] > 1000000){
+        $_SESSION['error'] = "Fichier trop volumineux ! 1Mo MAX";
+        $uploadOK = 0;
+      }
+      //Vérif type
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"){
+        $_SESSION['error'] = "Type de fichier non autorisée ! (jpg/png/jpeg)";
+        $uploadOK = 0;
+      }
+      //Vérif upload
+      if($uploadOK == 0){
+        echo('Error');
+      }else{
+        if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
+          $this->setImage($target_file);
+          $_SESSION['success'] = "Le fichier ". basename( $_FILES["image"]["name"]). " a bien été upload.";
+        }else{
+          $_SESSION['error'] = "Une erreur d'upload c'est produite, Merci de re-essayer ";
+        }
+      }
+    }
+
 }

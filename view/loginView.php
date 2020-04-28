@@ -17,6 +17,16 @@ require('includes/headerView.php');
                         <button class="btn btn-primary" id="button" style="background-color:#007ac9;" type="submit">Log in</button>
                         </form>
                     </div>
+                    <div class="error">
+                        <?php
+                            if(isset($error) && !empty($error)){
+                                echo("<p class='text-danger'>" . $error . "</p>");
+                            }
+                            if(isset($success) && !empty($success)){
+                                echo("<p class='text-success'>" . $success . "</p>");
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="team-clean">

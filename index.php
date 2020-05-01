@@ -7,7 +7,6 @@ require('controller/articlesController.php');
 require('controller/commentaireController.php');
 
 
-
 // SWITCH PAGE //
 if(!empty($_GET['action'])){
     switch($_GET['action']){

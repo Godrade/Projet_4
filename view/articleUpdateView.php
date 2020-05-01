@@ -2,11 +2,21 @@
 require('includes/headerView.php');
 ?>
 <section class="container">
+    <div class="error">
+        <?php
+            if(isset($error) && !empty($error)){
+                echo("<p class='text-danger'>" . $error . "</p>");
+            }
+            if(isset($success) && !empty($success)){
+                echo("<p class='text-success'>" . $success . "</p>");
+            }
+        ?>
+    </div>
     <div class="row">
         <div class="col-md-10">
             <div class="blockcontainer">
                 <div class="formulaireArticle">
-                    <form class="" method="post" action="?action=updatearticle">
+                    <form class="" method="post" action="?action=updatearticle" enctype = "multipart/form-data">
                         <h2>Ajouter un chapitre</h2>
                         <input type="hidden" class="input-Custom" name="id" value="<?= $data['id'] ?>">
                         <input type="text" placeholder="Nom du chapitre" class="input-Custom" name="title" value="<?= $data['name'] ?>">

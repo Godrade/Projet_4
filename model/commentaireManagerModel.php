@@ -1,15 +1,14 @@
 <?php
 
-class commentaireManagerModel{
+class commentaireManagerModel extends dbManager{
 
-    private $_db;
     private $_object;
 
     public function __construct($post = false){
+      $this->setDb();
       if($post != false && isset($post)){
         $this->_object = $post;
        }
-      $this->_db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');
     }
 
     public function addCommentaire(){

@@ -17,14 +17,8 @@ function readSigleArticle($id){
         header('Location: ?action=home');
     }else{
         
-        if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-            $error = $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
-        if(isset($_SESSION['success']) && !empty($_SESSION['success'])){
-            $success = $_SESSION['success'];
-            unset($_SESSION['success']);
-        }
+        $error = erreur();
+        $success = success();
 
         $tabCommentaire = getCommentaire($id);
         $title = $tabArticle['name'];
@@ -37,8 +31,6 @@ function readSigleArticle($id){
 function addArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    var_dump($article);
-    var_dump($_FILES);
     if($article->check()){
         $article->uploadFiles($post);
         if($articleDb->addArticle()){
@@ -54,36 +46,45 @@ function removeArticle($get){
     $article = new articleClass($get);
     $articleDb = new articlesManagerModel($article);
     $tabArticle = getArticle($get);
-    $articleDel = $articleDb->deleteArticle();
     unlink($tabArticle[4]);
-    $delComemmentaire = delCommentaireByArticle($get);
-    if($articleDel && $delComemmentaire){
-        header('Location: ?action=admin#articleReport');
+
+    if($articleDb->deleteArticle() && delCommentaireByArticle($get)){
+        $_SESSION['success'] = "L'article N° " . $tabArticle['id'] . " & les commentaires ont bien été supprimé !";
+    }else{
+        $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
     }
+    header('Location: ?action=admin#articleReport');
 }
 
 function editArticle($post){
     $tabArticle = getArticle($post);
-    if($tabArticle == false){
-        header('Location: ?action=admin');
-    }else{
+
+    $error = erreur();
+    $success = success();
+
+    if($tabArticle != false){
         $data = $tabArticle;
         $title = $data['name'];
-        require('view/articleUpdateView.php'); 
+        require('view/articleUpdateView.php');
+    }else{
+        $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+        header('Location: ?action=admin');
     }
+
 }
 
 function updateArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    if($article->check() == true){
-        $rep = $articleDb->updateArticle();
-        if($rep){
+    $article->uploadFiles();
+    if($article->check()){
+        if($articleDb->updateArticle()){
+            $_SESSION['success'] = "Votre article a bien été édité";
+            header('Location: ?action=admin');
+        }else{
+            $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
             header('Location: ?action=admin');
         }
-    }else{
-        echo('error');
-        header('Location: ?action=home');
     }
 }
 

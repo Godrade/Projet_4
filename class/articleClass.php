@@ -110,7 +110,7 @@ class articleClass{
       }
     }
 
-    public function uploadFiles($post){
+    public function uploadFiles(){
       $target_dir = "public/upload/";
       $target_file = $target_dir . basename($_FILES["image"]["name"]);
       $uploadOK = 1;
@@ -119,7 +119,6 @@ class articleClass{
       if(file_exists($target_file)){
         echo('Erreur : Cette image existe dèjà ! <br>');
         $_SESSION['error'] = "Erreur : Cette image existe déjà !";
-        $uploadOK = 0;
       }
       //Vérif size
       if($_FILES['image']['size'] > 1000000){

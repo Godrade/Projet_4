@@ -1,13 +1,12 @@
 <?php
 
-class connexionManagerModel{
+class connexionManagerModel extends dbManager{
 
-    private $_db;
     private $_objectUser;
     private $_objectAccount;
 
     public function __construct($connexionClass){
-      $this->_db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');
+      $this->setDb();
       $this->_objectUser = $connexionClass;
      
     }

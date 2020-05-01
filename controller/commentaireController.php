@@ -61,7 +61,11 @@ function resetReport($id){
     $com = new commentaireClass($tabCommentaire);
     $db = new commentaireManagerModel($com);
     $com->resetReport();
-    $db->resetReport();
+    if($db->resetReport()){
+        $_SESSION['success'] = "Les reports du commentaire N° " . $tabCommentaire['id'] . " On bien été reset";
+    }else{
+        $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+    }
     header('Location: ?action=admin#articleReport');
 }
 
@@ -74,7 +78,11 @@ function getCommentaireReport(){
 function delCommentaire($id){
     $com = new commentaireClass($id);
     $db = new commentaireManagerModel($com);
-    $tab = $db->deleteCommentaire();
+    if($db->deleteCommentaire()){
+        $_SESSION['success'] = "Le commentaire N° " . $tabCommentaire['id'] . " à bien été supprimé";
+    }else{
+        $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+    }
     header('Location: ?action=admin#articleReport');
 }
 

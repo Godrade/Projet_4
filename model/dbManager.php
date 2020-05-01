@@ -2,11 +2,10 @@
 
 class dbManager {
 
-	private $_db;
+	protected $_db;
 
 	public function __construct(){
 		$this->setDb();
-		$this->getDb();
 	}
 
 	//Setter
@@ -18,4 +17,5 @@ class dbManager {
 	public function getDb(){ return $this->_db; }
 	
 }
+
 

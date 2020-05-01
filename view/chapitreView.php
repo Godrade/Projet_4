@@ -9,7 +9,6 @@ require('includes/headerView.php');
                 <div class="col-12">
                     <div class="articleText">
                         <h1><?= $tabArticle['name']; ?></h1>
-                        <img src="<?= $tabArticle['image']; ?>">
                         <?= $tabArticle['content']; ?>
                         <p>Publié le : <?= $tabArticle['creation_date']; ?></p>
                     </div>

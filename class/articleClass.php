@@ -9,6 +9,7 @@ class articleClass{
     private $_createdDate;
     private $_username;
     private $_image;
+    private $_imageLink;
 
     private $_dbReturn;
 
@@ -78,6 +79,10 @@ class articleClass{
     public function setImage($image){
       $this->_image = $image;
     }
+    
+    public function setImageLink($imageLink){
+      $this->_imageLink = $imageLink;
+    }
 
     public function setDbReturn($dbReturn){
       $this->_dbReturn = $dbReturn;    
@@ -91,10 +96,11 @@ class articleClass{
     public function getContent(){return $this->_content;}
     public function getCreatedDate(){return $this->_createdDate;}
     public function getImage(){return $this->_image;}
+    public function getImageLink(){return $this->_imageLink;}
 
     //FUNCTIONS
     public function check(){
-      if($this->getTitle() == false || $this->getContent() == false || $_FILES['image']['error'] == 4){
+      if($this->getTitle() == false || $this->getContent() == false){
         $_SESSION['error'] = "Vous devez renseigner tout les champs !";
         return false;
       }else{
@@ -110,7 +116,7 @@ class articleClass{
       }
     }
 
-    public function uploadFiles(){
+    public function uploadFiles($post){
       $target_dir = "public/upload/";
       $target_file = $target_dir . basename($_FILES["image"]["name"]);
       $uploadOK = 1;
@@ -118,7 +124,7 @@ class articleClass{
       //Vérif image double
       if(file_exists($target_file)){
         echo('Erreur : Cette image existe dèjà ! <br>');
-        $_SESSION['error'] = "Erreur : Cette image existe déjà !";
+        $_SESSION['error'] = "Erreur : Cette image existe déjà elle à donc été remplacée !";
       }
       //Vérif size
       if($_FILES['image']['size'] > 1000000){
@@ -130,13 +136,27 @@ class articleClass{
         $_SESSION['error'] = "Type de fichier non autorisée ! (jpg/png/jpeg)";
         $uploadOK = 0;
       }
+      //NoUpdateLink
+      if($_FILES['image']['error'] == 4 && $post['typeForm'] == "new"){
+        $uploadOK = 0;
+        $_SESSION['error'] = "Erreur new";
+        return false;
+      }
+      if($_FILES['image']['error'] == 4 && $post['typeForm'] == "update"){
+        $uploadOK = 0;
+        $_SESSION['error'] = "";
+        $this->setImage($this->getImageLink());
+      }
       //Vérif upload
       if($uploadOK == 0){
+        $fileCheck = false;
         echo('Error');
       }else{
         if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
           $this->setImage($target_file);
           $_SESSION['success'] = "Le fichier ". basename( $_FILES["image"]["name"]). " a bien été upload.";
+          $fileCheck = true;
+          return true;
         }else{
           $_SESSION['error'] = "Une erreur d'upload c'est produite, Merci de re-essayer ";
         }

@@ -21,6 +21,7 @@ require('includes/headerView.php');
                     <input type="text" placeholder="Nom du chapitre" class="input-Custom" name="title">
                     <input type="file" class="input-Custom" name="image">
                     <input type="hidden" placeholder="Nom du chapitre" class="input-Custom" name="name" value="<?= $user['username'] ?>" disabled>
+                    <input type="hidden" class="input-Custom" name="typeForm" value="new">
                     <textarea id="editeur" class="form-control ckeditor inputCustom" name="content"></textarea>
                     <input type="submit" value="Envoyer" id="sendCommentaire">
                 </from>

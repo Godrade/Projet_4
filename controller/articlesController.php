@@ -20,9 +20,11 @@ function readSigleArticle($id){
         $error = erreur();
         $success = success();
 
+
         $tabCommentaire = getCommentaire($id);
+        
         $title = $tabArticle['name'];
-        require('view/ChapitreView.php'); 
+        require('view/chapitreView.php'); 
     }
 }
 
@@ -32,11 +34,15 @@ function addArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
     if($article->check()){
-        $article->uploadFiles($post);
-        if($articleDb->addArticle()){
-            $_SESSION['success'] = "Votre article à été ajouté !";
+        $rep = $article->uploadFiles($post);
+        if ($rep) {
+            if($articleDb->addArticle()){
+                $_SESSION['success'] = "Votre article à été ajouté !";
+            }else{
+                $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+            }
         }else{
-            $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
+            $_SESSION['error'] = "L'article doit avoir une image !";
         }
     }
     header('Location: ?action=admin');
@@ -76,11 +82,11 @@ function editArticle($post){
 function updateArticle($post){
     $article = new articleClass($post);
     $articleDb = new articlesManagerModel($article);
-    $article->uploadFiles();
+    $article->uploadFiles($post);
     if($article->check()){
         if($articleDb->updateArticle()){
             $_SESSION['success'] = "Votre article a bien été édité";
-            header('Location: ?action=admin');
+            header('Location: ?action=viewarticle&id=' . $post["id"] . "");
         }else{
             $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
             header('Location: ?action=admin');

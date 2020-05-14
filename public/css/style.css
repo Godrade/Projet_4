@@ -1,6 +1,5 @@
 .left {
-    width: 50%;
-    top: 130px;
+    top: 30px;
     float: left;
 }
 
@@ -68,4 +67,20 @@ input[type=submit]:hover {
 .signalp {
     font-size: 0.7em;
     margin: 0;
+}
+
+.imageJF {
+    width: 100%;
+}
+
+@media screen and (max-width: 800px){
+    .left {
+        top: 0;
+        float: none;
+    }
+
+    img {
+        width: 100% !important;
+        height: auto !important;
+    }
 }

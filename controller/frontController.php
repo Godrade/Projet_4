@@ -27,7 +27,7 @@ function LoginPage(){
     $success = success();
    
     $title = 'Connexion Administrateur';
-    require('view/loginView.php');
+    require('view/admin/loginView.php');
 }
 
 function AdminPage(){
@@ -38,5 +38,5 @@ function AdminPage(){
     $user = $_SESSION['user'];
     $tabArticles = chapitreAll();
     $tabCommentaire = getCommentaireReport();
-    require('view/adminHome.php');
+    require('view/admin/adminHome.php');
 }

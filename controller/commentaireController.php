@@ -9,7 +9,7 @@ function viewCommentaire($id){
         header('Location: ?action=admin');
     }else{
       $title = "Commentaire Numero " . $tabCommentaire['id'] . "";
-        require('view/commentaireView.php');  
+        require('view/admin/commentaireView.php');  
     }   
 }
 

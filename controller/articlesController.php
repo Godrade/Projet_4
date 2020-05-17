@@ -8,7 +8,7 @@ require('model/articlesManagerModel.php');
 function FullArticlePage(){
     $title = 'Tous les chapitres';
     $tabArticles = chapitreAll();
-    require('view/allChapitreView.php');
+    require('view/chapitre/allChapitreView.php');
 }
 
 function readSigleArticle($id){
@@ -24,7 +24,7 @@ function readSigleArticle($id){
         $tabCommentaire = getCommentaire($id);
         
         $title = $tabArticle['name'];
-        require('view/chapitreView.php'); 
+        require('view/chapitre/chapitreView.php'); 
     }
 }
 
@@ -71,7 +71,7 @@ function editArticle($post){
     if($tabArticle != false){
         $data = $tabArticle;
         $title = $data['name'];
-        require('view/articleUpdateView.php');
+        require('view/admin/articleUpdateView.php');
     }else{
         $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
         header('Location: ?action=admin');

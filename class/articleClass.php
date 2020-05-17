@@ -127,8 +127,8 @@ class articleClass{
         $_SESSION['error'] = "Erreur : Cette image existe déjà elle à donc été remplacée !";
       }
       //Vérif size
-      if($_FILES['image']['size'] > 1000000){
-        $_SESSION['error'] = "Fichier trop volumineux ! 1Mo MAX";
+      if($_FILES['image']['size'] > 2000000){
+        $_SESSION['error'] = "Fichier trop volumineux ! 2Mo MAX";
         $uploadOK = 0;
       }
       //Vérif type

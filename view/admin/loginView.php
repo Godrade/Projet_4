@@ -1,5 +1,5 @@
 <?php
-require('includes/headerView.php');
+require('view/includes/headerView.php');
 ?>
 <section class="container">
         <div class="row">
@@ -39,5 +39,5 @@ require('includes/headerView.php');
     </section>
 
 <?php
-require('includes/footerView.php');
+require('view/includes/footerView.php');
 ?>

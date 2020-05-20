@@ -76,11 +76,6 @@ class connexionClass{
       return true;
     }
 
-    //CONNECTION ERROR
-    public function connectionError(){
-      return false;
-    }
-
     //SESSION START
     public function openSessionUser(){ 
       if(!isset($_SESSION['user'])){

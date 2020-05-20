@@ -29,7 +29,7 @@ function desrtoySessionUser(){
   $ObjetUser = new connexionClass($_SESSION["user"]);
   $ObjetUser->desrtoySessionUser();
 
-  if($ObjetUser->desrtoySessionUser() == true){
+  if($ObjetUser->desrtoySessionUser()){
     header("Location: index.php?action=login");
   }
 

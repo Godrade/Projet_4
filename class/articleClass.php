@@ -149,13 +149,11 @@ class articleClass{
       }
       //Vérif upload
       if($uploadOK == 0){
-        $fileCheck = false;
         echo('Error');
       }else{
         if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
           $this->setImage($target_file);
           $_SESSION['success'] = "Le fichier ". basename( $_FILES["image"]["name"]). " a bien été upload.";
-          $fileCheck = true;
           return true;
         }else{
           $_SESSION['error'] = "Une erreur d'upload c'est produite, Merci de re-essayer ";

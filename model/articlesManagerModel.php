@@ -57,7 +57,7 @@ class articlesManagerModel extends dbManager{
   }
 
     //SelecteById = Retrun tableau
-    public function SelectArticleById(){
+    public function selectArticleById(){
       $requete = $this->_db->prepare("SELECT * FROM article WHERE id = :id");
       $requete->bindValue("id", $this->_object->getId());
       $requete->execute();

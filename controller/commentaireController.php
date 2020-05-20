@@ -4,7 +4,7 @@ require('model/commentaireManagerModel.php');
 
 
 function viewCommentaire($id){
-    $tabCommentaire = SelectCommentaire($id);
+    $tabCommentaire = selectCommentaire($id);
     if($tabCommentaire == false){
         header('Location: ?action=admin');
     }else{
@@ -35,16 +35,16 @@ function getCommentaire($id){
     return $tab;
 }
 
-function SelectCommentaire($id){
+function selectCommentaire($id){
     $com = new commentaireClass($id);
     $db = new commentaireManagerModel($com);
-    $tab = $db->SelectCommentaireById();
+    $tab = $db->selectCommentaireById();
     $com->checkComment($tab);
     return $tab;
 }
 
 function reportCommentaire($id){
-    $tabCommentaire = SelectCommentaire($id);
+    $tabCommentaire = selectCommentaire($id);
     $com = new commentaireClass($tabCommentaire);
     $db = new commentaireManagerModel($com);
     $com->reportCommentaire();
@@ -57,7 +57,7 @@ function reportCommentaire($id){
 }
 
 function resetReport($id){
-    $tabCommentaire = SelectCommentaire($id);
+    $tabCommentaire = selectCommentaire($id);
     $com = new commentaireClass($tabCommentaire);
     $db = new commentaireManagerModel($com);
     $com->resetReport();

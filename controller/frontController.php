@@ -16,13 +16,13 @@ function success(){
 }
 
 /* ROUTE */
-function HomePage(){
+function homePage(){
     $title = 'Accueil';
     $tabArticles = chapitreHomePage();
     require('view/homeView.php');
 }
 
-function LoginPage(){
+function loginPage(){
     $error = erreur();
     $success = success();
    
@@ -30,7 +30,7 @@ function LoginPage(){
     require('view/admin/loginView.php');
 }
 
-function AdminPage(){
+function adminPage(){
     $error = erreur();
     $success = success();
 

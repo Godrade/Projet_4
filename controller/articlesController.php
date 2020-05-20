@@ -5,7 +5,7 @@ require('model/articlesManagerModel.php');
 
 
 // Front-end
-function FullArticlePage(){
+function fullArticlePage(){
     $title = 'Tous les chapitres';
     $tabArticles = chapitreAll();
     require('view/chapitre/allChapitreView.php');
@@ -109,7 +109,7 @@ function chapitreHomePage(){
 function getArticle($id){
     $article = new articleClass($id);
     $articleDb = new articlesManagerModel($article);
-    $tab = $articleDb->SelectArticleById();
+    $tab = $articleDb->selectArticleById();
     $article->checkerById($tab);
     return $tab;
 }

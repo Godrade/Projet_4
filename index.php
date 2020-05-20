@@ -11,23 +11,20 @@ require('controller/commentaireController.php');
 if(!empty($_GET['action'])){
     switch($_GET['action']){
         case 'home':
-            HomePage();
+            homePage();
         break;
         case 'allarticle':
             FullArticlePage();
         break;
-        case 'article':
-            ArticlePage();
-        break;
         case 'login':
-           LoginPage();
+           loginPage();
         break;
         case 'connexionlogin':
             connexionLogin($_POST);
         break;
         case 'admin':
             checkSessionUser();
-            AdminPage();
+            adminPage();
         break;
         case 'logout':
             desrtoySessionUser();
@@ -70,8 +67,8 @@ if(!empty($_GET['action'])){
             viewCommentaire($_GET);
         break;
         default:
-            HomePage();
+            homePage();
     }
     }else{
-        HomePage();
+        homePage();
 }

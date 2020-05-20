@@ -36,7 +36,7 @@ class commentaireManagerModel extends dbManager{
       return $rep;
     }
 
-    public function SelectCommentaireById(){
+    public function selectCommentaireById(){
       $requete = $this->_db->prepare("SELECT * FROM comment WHERE id = :id");
       $requete->bindValue("id", $this->_object->getId());
       $requete->execute();

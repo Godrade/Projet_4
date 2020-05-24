@@ -85,7 +85,7 @@ function updateArticle($post){
     $article->uploadFiles($post);
     if($article->check()){
         if($articleDb->updateArticle()){
-            $_SESSION['success'] = "Votre article a bien été édité";
+            $_SESSION['success'] = "Votre article a bien été édité.";
             header('Location: ?action=viewarticle&id=' . $post["id"] . "");
         }else{
             $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";

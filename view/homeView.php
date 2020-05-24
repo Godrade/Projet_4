@@ -16,7 +16,7 @@ require('includes/sliderView.php');
                                 Curabitur odio urna, aliquam eu lacinia sit amet, hendrerit ac tellus</p>
                         </div>
                         <div class="right col-lg-6 col-12">
-                            <img src="public/img/jeanforteroche.png">
+                            <img src="public/img/jeanforteroche.png" alt="pp jean forteroche">
                         </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@ require('includes/sliderView.php');
                     <a class="portfolio-link" href="?action=viewarticle&id=<?= $data['id'] ?>">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="<?= $data['image'] ?>"></a>
+                        </div><img class="img-fluid" src="<?= $data['image'] ?>" alt="pp chapitre"></a>
                     <div class="portfolio-caption">
                         <h4><?= $data['name'] ?></h4>
                         <p class="text-muted"><?= $data['creation_date'] ?></p>

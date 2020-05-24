@@ -12,8 +12,8 @@ require('view/includes/headerView.php');
                             <div>
                                 <h3 id="heading">Log in:</h3>
                             </div>
-                            <input class="form-control" type="text" id="input" placeholder="Username" name="username" value="Jean">
-                            <input class="form-control" type="password" id="input" placeholder="Password" name="password" value="Admin01">
+                            <input class="form-control input" type="text" placeholder="Username" name="username" value="Jean">
+                            <input class="form-control input" type="password" placeholder="Password" name="password" value="Admin01">
                             <button class="btn btn-primary" id="button" style="background-color:#007ac9;" type="submit">Log in</button>
                         </div>
                     </div>

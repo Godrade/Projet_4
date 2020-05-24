@@ -29,7 +29,6 @@ require('view/includes/headerView.php');
         </div>
     </div>
 </section>
-
 <section class="container-fluid" id="articleReport">
     <div class="row">
         <div class="col-lg-6 col-12">
@@ -84,8 +83,6 @@ require('view/includes/headerView.php');
         </div>
     </div>
 </section>
-<br><br><br>
-
 <?php
 require('view/includes/footerView.php');
 ?>

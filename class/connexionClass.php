@@ -72,16 +72,12 @@ class connexionClass{
 
     //CONNECTION USER
     public function connectionUser(){
-      $this->openSessionUser();
-      return true;
-    }
-
-    //SESSION START
-    public function openSessionUser(){ 
-      if(!isset($_SESSION['user'])){
-        $tabUser = array ( "username" => $this->_username );
-        $_SESSION['user'] = $tabUser;
-      }
+        if(!isset($_SESSION['user'])){
+            $tabUser = array ( "username" => $this->_username );
+            $_SESSION['user'] = $tabUser;
+            return true;
+        }
+        return false;
     }
 
     public function desrtoySessionUser(){

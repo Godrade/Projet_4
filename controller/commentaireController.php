@@ -18,12 +18,12 @@ function addCommentaire($post){
     $db = new commentaireManagerModel($com);
     if($com->check() == true){
         if($rep = $db->addCommentaire()){
-            $_SESSION['success'] = 'Votre commentaire a été ajouté';
+            $_SESSION['success'] = 'Votre commentaire a été ajouté.';
         }else{
             $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
         }
     }else{
-        $_SESSION['error'] = "Erreur : Votre commentaire n'as pas pu être ajouté !";
+        $_SESSION['error'] = "Erreur : Votre commentaire n'a pas pu être ajouté !";
     }
     header('Location: ?action=viewarticle&id=' . $post["idArticle"] . '#commentaire');
 }
@@ -49,7 +49,7 @@ function reportCommentaire($id){
     $db = new commentaireManagerModel($com);
     $com->reportCommentaire();
     if($db->addReportCommentaire()){
-        $_SESSION['success'] = 'Votre signalement a bien été transmit !';
+        $_SESSION['success'] = 'Votre signalement a bien été transmis !';
     }else{
         $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
     }
@@ -62,7 +62,7 @@ function resetReport($id){
     $db = new commentaireManagerModel($com);
     $com->resetReport();
     if($db->resetReport()){
-        $_SESSION['success'] = "Les reports du commentaire N° " . $tabCommentaire['id'] . " On bien été reset";
+        $_SESSION['success'] = "Les reports du commentaire N° " . $tabCommentaire['id'] . " on bien été supprimer.";
     }else{
         $_SESSION['error'] = "Une erreur est survenue, si le problème persiste merci de contacter un administrateur du site !";
     }

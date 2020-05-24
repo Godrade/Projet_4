@@ -46,10 +46,10 @@ class articleClass{
 
     public function setTitle($title){
       if(ctype_space($title)){
-        $_SESSION['error'] = "Vous devez rensigner un titre !";
+        $_SESSION['error'] = "Vous devez renseigner un titre !";
         return false;
       }elseif(strlen($title) < 0){
-        $_SESSION['error'] = "Vous devez rensigner un titre !";
+        $_SESSION['error'] = "Vous devez renseigner un titre !";
         return false;
       }else{
         $title = strtolower($title);
@@ -60,10 +60,10 @@ class articleClass{
 
     public function setContent($content){
       if(ctype_space($content)){
-        $_SESSION['error'] = "Vous devez rensigner un contenue !";
+        $_SESSION['error'] = "Vous devez renseigner un contenue !";
         return false;
       }elseif(strlen($content) < 0){
-        $_SESSION['error'] = "Vous devez rensigner un contenue !";
+        $_SESSION['error'] = "Vous devez renseigner un contenue !";
         return false;
       }else{
         $content = str_replace("<script>", "", $content);
@@ -101,7 +101,7 @@ class articleClass{
     //FUNCTIONS
     public function check(){
       if($this->getTitle() == false || $this->getContent() == false){
-        $_SESSION['error'] = "Vous devez renseigner tout les champs !";
+        $_SESSION['error'] = "Vous devez renseigner tous les champs !";
         return false;
       }else{
         return true;
@@ -124,7 +124,7 @@ class articleClass{
       //Vérif image double
       if(file_exists($target_file)){
         echo('Erreur : Cette image existe dèjà ! <br>');
-        $_SESSION['error'] = "Erreur : Cette image existe déjà elle à donc été remplacée !";
+        $_SESSION['error'] = "Erreur : Cette image existe déjà (image remplacée) !";
       }
       //Vérif size
       if($_FILES['image']['size'] > 2000000){
@@ -133,7 +133,7 @@ class articleClass{
       }
       //Vérif type
       if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"){
-        $_SESSION['error'] = "Type de fichier non autorisée ! (jpg/png/jpeg)";
+        $_SESSION['error'] = "Type de fichier non autorisé ! (jpg/png/jpeg)";
         $uploadOK = 0;
       }
       //NoUpdateLink
@@ -156,7 +156,7 @@ class articleClass{
           $_SESSION['success'] = "Le fichier ". basename( $_FILES["image"]["name"]). " a bien été upload.";
           return true;
         }else{
-          $_SESSION['error'] = "Une erreur d'upload c'est produite, Merci de re-essayer ";
+          $_SESSION['error'] = "Une erreur d'upload c'est produite, Merci de réessayer !";
         }
       }
     }

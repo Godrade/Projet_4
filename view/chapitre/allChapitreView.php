@@ -15,7 +15,7 @@ require('view/includes/headerView.php');
                     <a class="portfolio-link" href="?action=viewarticle&id=<?= $data['id'] ?>">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fa fa-plus fa-3x"></i></div>
-                            </div><img class="img-fluid" src="<?= $data['image'] ?>"></a>
+                            </div><img class="img-fluid" src="<?= $data['image'] ?>" alt="pp chapitre"></a>
                     <div class="portfolio-caption">
                         <h4><?= $data['name'] ?></h4>
                         <p class="text-muted"><?= $data['creation_date'] ?></p>

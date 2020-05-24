@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <script src="vendor/ckeditor/ckeditor-full/ckeditor.js"></script>
-    <script src="vendor/ckeditor/ckeditor-simple/ckeditor.js"></script>
     <link rel="stylesheet" href="public/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/style.css">
 </head>
